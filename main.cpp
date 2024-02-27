@@ -14,6 +14,7 @@ int main(int argc, char* argv[]){
 	BST.addNode(5);
 	BST.addNode(2);
     BST.printRootNode();
+    BST.getTreeGraph();
 
 	return 0;
 }
