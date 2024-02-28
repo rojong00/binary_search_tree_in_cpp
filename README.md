@@ -10,7 +10,7 @@
 ```
      git pull --rebase origin main
 ```
-   &&
+   OR
    
 ```bash
      git pull origin main --no-rebase
