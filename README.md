@@ -2,6 +2,7 @@
 <br>
 1. BST tree in cpp
    - Done until making a tree representing a binary tree
+![](https://github.com/rojong00/binary_search_tree_in_cpp/blob/main/img/execution.png)
       
 3. git techique
    - SITUATION : amend bst.cpp in local and remote repo simultaneously
