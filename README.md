@@ -15,7 +15,8 @@
 ```bash
      git pull origin main --no-rebase
 ```
-     An ERR occurred indicating that there is a same named function in bst.cpp
+
+   An ERR occurred indicating that there is a same named function in bst.cpp
    - merge makes same err
    - so manual amending was required.
    - below is a
