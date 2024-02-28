@@ -5,5 +5,5 @@
       
 3. git techique
    - SITUATION : amend bst.cpp in local and remote repo simultaneously
-   - "git pull --rebase origin main" OCCURS an err making same name function in bst.cpp
+   - When executing "git pull --rebase origin main", An ERR occurred indicating that there is a same named function in bst.cpp
    - 
