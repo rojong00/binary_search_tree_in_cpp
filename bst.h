@@ -27,7 +27,7 @@ public:
     void searchNode(int value_);
     void getTreeGraph();
     void printRootNode(){
-        printf("root node : %d\n", root->value);
+        printf("(root node) : %d\n", root->value);
     }
 
 private:

@@ -209,41 +209,46 @@ void BSTtree::getTreeGraph()
         return;
     }
 
-    vector<int> arrValue(30, -1);
-    arrValue[0] = tmp->value;
+    vector<int> arrValue(100, -1);
     DFSrecurssive(tmp, arrValue, maxDepth, 1);
     // print vector
-    printf("maxDepth : %d\n", maxDepth);
+    printf("(maxDepth) : %d\n", maxDepth);
     int arrIdx = 1;
     int tmpDepth = maxDepth;
-    while(tmpDepth > 0)
+    int par = 2;
+    while(tmpDepth > 1)
     {
-        arrIdx *= 2;
         tmpDepth--;
+        arrIdx += par;
+        par *= 2;
     }
 
-    for ( int i = 0 ; i < arrIdx ; i++)
-        printf("%d ", arrValue[i]);
+    printf("======= Tree Start =======\n");
     int levelTok = 0;
-    printf("hi");
     for ( int i = 0 ; i < arrIdx ; i++ )
     {
-        printf("%d ", arrValue[i]);
-        if (levelTok == 0)
+        if (arrValue[i] > 0)
+            printf("%d ", arrValue[i]);
+        else 
+            printf("_ ");
+
+        if (i == 0)
         {
             printf("\n");
-            levelTok = i;
-            tmpDepth = 2;
+            levelTok = 2;
         }
-        else if (i == levelTok+levelTok)
+        else if (i == levelTok)
         {
             printf("\n");
-            levelTok = tmpDepth;
-            tmpDepth *= 2;
+            levelTok *= 2;
+            levelTok += i;
         }
         else
-        {}
+        { 
+            continue;
+        }
     }
+    printf("\n======= Tree End  =======\n");
 }
 
 void BSTtree::DFSrecurssive(const Node* tmp, vector<int> &arr, int& maxDepth, int tmpDepth)
@@ -265,8 +270,6 @@ void BSTtree::DFSrecurssive(const Node* tmp, vector<int> &arr, int& maxDepth, in
 
     maxDepth = tmpDepth > maxDepth ? tmpDepth : maxDepth;
     arr[idx] = tmp->value;
-    printf("__arr[idx] = %d\n", tmp->value);
-    printf("__arr[idx] = %d\n", arr[idx]);
 
     DFSrecurssive(tmp->left, arr, maxDepth, tmpDepth+1);
     DFSrecurssive(tmp->right, arr,  maxDepth, tmpDepth+1);
@@ -276,14 +279,16 @@ int BSTtree::getIndexInTree(int tmpDepth)
 {
     int temp = 1;
     int tempDepth = tmpDepth;
+    int par = 2;
     if (tmpDepth == 1)
-        return 0;
+        return temp-1;
 
-    while(tempDepth > 0)
+    while(tempDepth > 2)
     {
-        temp *= 2;
+        temp += par;
+        par *= 2;
         tempDepth--;
     }
 
-    return temp-1;
+    return temp;
 }
