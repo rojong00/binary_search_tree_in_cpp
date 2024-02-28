@@ -1,7 +1,7 @@
 ● OBJECTIVE
 <br>
 1. BST tree in cpp
-   - Done until making a tree representing a binary tree
+   - Done until making a tree representing a binary tree, but it's not working well So i need to revise that
 ![](https://github.com/rojong00/binary_search_tree_in_cpp/blob/main/img/execution.png)
       
 3. git techique
