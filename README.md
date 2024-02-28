@@ -17,9 +17,8 @@
 ```
 
    An ERR occurred indicating that there is a same named function in bst.cpp
-   - merge makes same err
    - so manual amending was required.
-   - below is a
+● below is a
 ```bash
           git log --oneline --graph --all
 ```
