@@ -23,6 +23,7 @@
 ```bash
           git log --oneline --graph --all
 ```
+
 - rebase
 ![](https://github.com/rojong00/binary_search_tree_in_cpp/blob/main/img/rebase.png)
 - merge (no-rebase)
