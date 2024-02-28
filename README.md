@@ -19,6 +19,10 @@
    An ERR occurred indicating that there is a same named function in bst.cpp
    - so manual amending was required.
 <br>
+
+•
+◦
+○
 ● below is a sequential commit
 ```bash
           git log --oneline --graph --all
