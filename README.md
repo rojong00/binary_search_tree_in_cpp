@@ -9,7 +9,7 @@
    - When executing "git pull --rebase origin main", An ERR occurred indicating that there is a same named function in bst.cpp
    - merge makes same err
    - so manual amending was required.
-
+   - below is a "git log --oneline --graph --all"
 - rebase
 ![](https://github.com/rojong00/binary_search_tree_in_cpp/blob/main/img/rebase.png)
 - merge (no-rebase)
