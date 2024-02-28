@@ -19,7 +19,6 @@ void BSTtree::displayNode2(Node* _Node){
 }
 
 void BSTtree::addNode(int _value){
-	int tmptmp = 123;
 	Node* newNode = new Node;
 	newNode->value = _value;
 	newNode->parent = nullptr;
@@ -188,15 +187,6 @@ Node* BSTtree::search(int _value){
     if (chkExit == 2)
         return nullptr;
     return tmp;
-}
-
-void BSTtree::getTreeGraph()
-{
-	int Graph = 0;
-	while (true)
-		{
-			break;
-		}
 }
 
 void BSTtree::searchNode(int value_)
