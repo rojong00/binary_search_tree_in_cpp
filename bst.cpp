@@ -108,6 +108,15 @@ Node* BSTtree::search(int _value){
     return tmp;
 }
 
+void BSTtree::getTreeGraph()
+{
+	int Graph = 0;
+	while (true)
+		{
+			break;
+		}
+}
+
 void BSTtree::searchNode(int value_)
 {
     Node* tmp = search(value_);
