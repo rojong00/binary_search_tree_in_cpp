@@ -20,9 +20,6 @@
    - so manual amending was required.
 <br>
 
-•
-◦
-○
 ● below is a sequential commit
 ```bash
           git log --oneline --graph --all
