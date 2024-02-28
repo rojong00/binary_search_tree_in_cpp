@@ -19,6 +19,7 @@ void BSTtree::displayNode2(Node* _Node){
 }
 
 void BSTtree::addNode(int _value){
+	int tmptmp = 123;
 	Node* newNode = new Node;
 	newNode->value = _value;
 	newNode->parent = nullptr;
