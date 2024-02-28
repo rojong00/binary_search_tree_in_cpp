@@ -75,10 +75,75 @@ void BSTtree::addNode(int _value){
 	}
 }
 
+Node* BSTtree::findMin(Node* Node_)
+{
+    while (Node_->left != nullptr)
+    {
+        printf("node->left->value : %d", Node_->left->value);
+        Node_ = Node_->left;
+    }
+
+    return Node_;
+}
+
 void BSTtree::removeNode(int _value){
 	Node* tmp =	search(_value);
-	Node* _parent = tmp->parent;
-//	_parent->
+    if (tmp == nullptr)
+    {
+        printf("(remove) : there isn't %d, so can't remove it\n", _value);
+        return;
+    }
+
+	Node* parentOfTarget = tmp->parent;
+    
+    if (tmp->left == nullptr && tmp->right == nullptr)
+    {
+        if (parentOfTarget == nullptr)
+        {
+            root = nullptr;
+        }
+        else if (parentOfTarget->left == tmp)
+        {
+            parentOfTarget->left = nullptr;
+        }
+        else
+        {
+            parentOfTarget->right = nullptr;
+        }
+
+        delete tmp;
+    }
+    else if (tmp->left == nullptr || tmp->right == nullptr)
+    {
+        Node* child = (tmp->left == nullptr)? tmp->right : tmp->left;
+
+        if (parentOfTarget == nullptr)
+        {
+            root = child;
+        }
+        else if (parentOfTarget->left == tmp)
+        {
+            parentOfTarget->left = child;
+            child->parent = parentOfTarget;
+        }
+        else
+        {
+            parentOfTarget->right = child;
+            child->parent = parentOfTarget;
+        }
+
+        delete tmp;
+    }
+    else
+    {
+        Node* successor = findMin(tmp->right);
+        int tmpVal = successor->value;
+        removeNode(successor->value); 
+        tmp->value = tmpVal;
+        printf("(remove) : there was %d, so has removed it\n", _value);
+        printf("\t");
+        displayNode1();
+    }
 }
 
 Node* BSTtree::search(int _value){
@@ -88,24 +153,40 @@ Node* BSTtree::search(int _value){
 	}
 	
 	Node* tmp = root;
+    size_t chkExit = 0;
 	while(true){
         if ( tmp == nullptr ) 
             break;
 
 		if (tmp->value == _value)
+        {
+            chkExit = 1;
             break;
-
-		while (tmp->value > _value){
-				if (tmp->left == nullptr)	
-                    return nullptr;
-				else tmp = tmp->left;
-		}
-		while (tmp->value > _value){
+        }
+        else if (tmp->value < _value){
 				if (tmp->right == nullptr)	
-                    return nullptr;
+                {
+                    chkExit = 2;
+                    break;
+                }
 				else tmp = tmp->right;
 		}
+        else if (tmp->value > _value){
+				if (tmp->left == nullptr)	
+                {
+                    chkExit = 2;
+                    break;
+                }
+				else tmp = tmp->left;
+		}
+        else
+        {}
+
+        if (chkExit != 0)
+            break;
 	}
+    if (chkExit == 2)
+        return nullptr;
     return tmp;
 }
 
@@ -121,9 +202,103 @@ void BSTtree::getTreeGraph()
 void BSTtree::searchNode(int value_)
 {
     Node* tmp = search(value_);
+    printf("(search) ");
     if ( tmp == nullptr )
         printf("there isn't '%d'!\n", value_);
     else
         printf("there is '%d'!\n", value_);
 }
 
+void BSTtree::getTreeGraph()
+{
+    int maxDepth = 0;
+    Node* tmp = root;
+    if (tmp == nullptr)
+    {
+        printf("it's empty tree\n");
+        return;
+    }
+
+    vector<int> arrValue(100, -1);
+    DFSrecurssive(tmp, arrValue, maxDepth, 1);
+    // print vector
+    printf("(maxDepth) : %d\n", maxDepth);
+    int arrIdx = 1;
+    int tmpDepth = maxDepth;
+    int par = 2;
+    while(tmpDepth > 1)
+    {
+        tmpDepth--;
+        arrIdx += par;
+        par *= 2;
+    }
+
+    printf("======= Tree Start =======\n");
+    int levelTok = 0;
+    for ( int i = 0 ; i < arrIdx ; i++ )
+    {
+        if (arrValue[i] > 0)
+            printf("%d ", arrValue[i]);
+        else 
+            printf("_ ");
+
+        if (i == 0)
+        {
+            printf("\n");
+            levelTok = 2;
+        }
+        else if (i == levelTok)
+        {
+            printf("\n");
+            levelTok *= 2;
+            levelTok += i;
+        }
+        else
+        { 
+            continue;
+        }
+    }
+    printf("\n======= Tree End  =======\n");
+}
+
+void BSTtree::DFSrecurssive(const Node* tmp, vector<int> &arr, int& maxDepth, int tmpDepth)
+{
+    int idx = getIndexInTree(tmpDepth);
+    while (true)
+    {
+        if (arr[idx] != -1)
+            idx++;
+        else
+            break;
+    }
+
+    if (tmp == nullptr)
+    {
+        arr[idx] = -2;
+        return;
+    }
+
+    maxDepth = tmpDepth > maxDepth ? tmpDepth : maxDepth;
+    arr[idx] = tmp->value;
+
+    DFSrecurssive(tmp->left, arr, maxDepth, tmpDepth+1);
+    DFSrecurssive(tmp->right, arr,  maxDepth, tmpDepth+1);
+}
+
+int BSTtree::getIndexInTree(int tmpDepth)
+{
+    int temp = 1;
+    int tempDepth = tmpDepth;
+    int par = 2;
+    if (tmpDepth == 1)
+        return temp-1;
+
+    while(tempDepth > 2)
+    {
+        temp += par;
+        par *= 2;
+        tempDepth--;
+    }
+
+    return temp;
+}
