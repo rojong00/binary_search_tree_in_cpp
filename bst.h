@@ -34,6 +34,9 @@ public:
     void tmpFunction(){
         printf("tmpFunction\n");
     }
+    void tmpFunc3{
+	    printf("tmpFunc3\n");
+    }
 
 private:
 	Node* root;
