@@ -29,13 +29,17 @@ public:
     void printRootNode(){
         printf("(root node) : %d\n", root->value);
     }
-    void tmpFunc2{
+    void tmpFunc2(){
         printf("tmpFunc2\n");
+    }
     void tmpFunction(){
         printf("tmpFunction\n");
     }
-    void tmpFunc3{
+    void tmpFunc3(){
 	    printf("tmpFunc3\n");
+    }
+    void tmpFunction3(){
+        printf("tmpFunction3\n");
     }
 
 private:
