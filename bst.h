@@ -29,6 +29,9 @@ public:
     void printRootNode(){
         printf("(root node) : %d\n", root->value);
     }
+    void tmpFunc2{
+        printf("tmpFunc2\n");
+    }
 
 private:
 	Node* root;
