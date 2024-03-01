@@ -31,6 +31,8 @@ public:
     }
     void tmpFunc2{
         printf("tmpFunc2\n");
+    void tmpFunction(){
+        printf("tmpFunction\n");
     }
 
 private:
